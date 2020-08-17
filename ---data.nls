@@ -1,0 +1,158 @@
+to get-data
+  ;; All sublists of equal length, the first has observation dates - lists of
+  ;; observed numbers of I/C/D per jurisdiction per week, starts at 27/12/19
+  ;; entered by hand, when no data available, 0 is put in
+
+  set dates
+      ( list 191229 200103 200110 200117 200124 200131 200207 200114 200221 200228
+             200306 200313 200320 200327 200403 200410 200417 200424 200501 200508
+             200515 200522 200529 200605 200612 200619 200626 200703 200710 200717
+             200724 200731 200807 200815)
+  
+  set BR-i (list  0      0      0      0      0      0      0      0      0      1
+        13     151     970    3417    9141   19789   33682   52995   92109  145892
+    218223  330890  468338  646006  829950 1038568 1280054 1543341 1804338 2048697
+   2348200 2666298 2967064 3278859)
+  
+  set BR-d (list  0      0      0      0      0      0      0      0      0      0
+         0       0      11      92     363    1068    2124    3670    6410    9992
+     14817   21048   27944   35047   41901   49040   56109   63254   70524   77932
+     85385   92568   99704  106571)
+
+  set USA-i
+    ( list  0       0         0         0         0         0         0        0         35        63
+        319      2183     19551    105217    283447    509604    714822   925235    1131030   1321785
+    1460988   1639918   1793530   1946236   2119922   2297190   2552956  2890588    3293927   3770012
+    4284327   4705889   5095524   5476266)
+
+  ;; USA deceased
+  set USA-d
+    ( list  0       0         0         0         0         0          0         0         0         0
+         15        48       309      2110      8839     22038      37448     52191     65753     78615
+      91089     99996    104542    111145    116825    121407     127640    132101    136633    142064
+     148490    156474    164094    171535)
+
+  ;; Chinese infections
+  set PRC-i
+    ( list     0    0         0         0       287     11791     34544      66492     76288     79251
+      80651     80824     81008     81394     81639     82653     82692      82804     82847     82886
+      82933     82971     82995     83027     83064     83325     83426      83524     83585     83622
+      83750     84292     84565     84786)
+
+ ;; Chinese deceased
+  set PRC-d
+    ( list 0        0         0         1        41       259       722       1523       2345     2835
+       3097      3199      3255      3295      3326      3339      4623       4632       4633     4633
+       4633      4634      4634      4634      4634      4634      4634       4634       4634     4634
+       4634      4634      4634      4634)
+
+  ;; Dutch infections
+  set NL-i
+    ( list 0        0         0         0          0        0         0          0          0        2
+         128      802      2994      8603      15723    23097     30449      36545      39791    42039
+       43681    44888     46126     47152      48461    49462     50005      50335      50840    51454
+       52595    54301     57501     61840)
+  ;; Dutch deceased
+  set NL-d
+    ( list 0        0         0         0          0        0         0          0          0        0
+           1       10       106       546       1487     2511      3459       4287       4893     5359
+        5643     5788      5931      6005       6053     6081      6103       6113       6135     6138
+        6139     6147      6154      6167)
+
+   ;; World infections
+  set world-i
+    ( list 0       44        59        66        897    14553     37552      69197      78651    86604
+      102050   145417    275733    597457    1117272  1694667   2249004    2828682    3393467  4009284
+     4569064  5278365   6026418   6801090    7726016  8750990   9898547   11182576   12619884 14179753
+    15931445 17752831  19532532  21345178)
+
+  ;; World deceased
+  set world-d
+    ( list 0        0         0         0         41      304       813       1669       2460     2977
+        3494     5428     11440     27758      60609   105979    153915     197095     239448   283732
+      304795   338632    366422    396664     427689   461820    496079     528409     562076   598537
+      641885   682392    723184    763836)
+
+   ;; France infections
+  set F-i
+    ( list 0        0         0         0          0        0         0          0         12       57
+         653     3661     12612     32964      64338    90676    109252     122577     130158   138421
+      142919   144556    149558    152444     156287   159452    162936     166960     170752   174674
+      180528   187919    197921    212221)
+
+  ;; France deceased
+  set F-d
+    ( list 0        0         0         0          0        0         0         0        1        2
+           9       79       450      1995       6507    13197     18681     22245    24594    26230
+       27425    28289     28714     29111      29374    29617     29778     29837    30004    30152
+       30129    30265     30324     30406)
+
+   ;; UK infections
+  set UK-i
+    ( list 0        0         0         0          0        0         0         0        9       23
+         151      724      3602     13142      34484    66628     98158    129596   160301   190933
+      213830   231466    245005    255926     264634   272641    279457    284276   288972   293239
+      297914   303181    309005    316367)
+
+  ;; UK deceased
+  set UK-d
+    ( list 0        0         0         0          0        0         0         0        0        0
+           1       10       194      1161       4461    10760     16879     22297    27510    31241
+       33641    35947     38161     39013      39332    39844     40288     40578    40819    41075
+       41088    41198     41270     41358)
+
+  set USA-dd [ 0 ] set PRC-dd [ 0 ] set NL-dd [ 0 ]  set F-dd [ 0 ] set world-dd [ 0 ] 
+  set BR-dd [ 0 ] set UK-dd  [ 0 ]
+  set USA-di [ 0 ] set PRC-di [ 0 ] set NL-di [ 0 ]  set F-di [ 0 ] set world-di [ 0 ] 
+  set BR-di [ 0 ] set UK-di  [ 0 ] 
+  set c-d [ 0 ] set c-i [ 0 ] set d-d [ 0 ] set d-i [ 0 ] set m-s [ 0 ] set m-i [ 0 ] 
+  set m-r [ 0 ] set m-d [ 0 ]
+  let counter 1
+  repeat xmax [
+    ifelse counter > 0 and counter <= xmax [ ;; bereken eerst de dagkoersen
+      set td- item (counter - 1) USA-d   set td item counter USA-d   set USA-diff   (td - td-)
+      set td- item (counter - 1) PRC-d   set td item counter PRC-d   set PRC-diff   (td - td-)
+      set td- item (counter - 1) NL-d    set td item counter NL-d    set NL-diff    (td - td-)
+      set td- item (counter - 1) F-d     set td item counter F-d     set F-diff     (td - td-)
+      set td- item (counter - 1) world-d set td item counter world-d set world-diff (td - td-)
+      set td- item (counter - 1) UK-d    set td item counter UK-d    set UK-diff    (td - td-)
+      set td- item (counter - 1) BR-d    set td item counter BR-d    set BR-diff    (td - td-)
+
+      set td- item (counter - 1) USA-i   set td item counter USA-i   set USA-diffi   (td - td-)
+      set td- item (counter - 1) PRC-i   set td item counter PRC-i   set PRC-diffi   (td - td-)
+      set td- item (counter - 1) NL-i    set td item counter NL-i    set NL-diffi    (td - td-)
+      set td- item (counter - 1) F-i     set td item counter F-i     set F-diffi     (td - td-)
+      set td- item (counter - 1) world-i set td item counter world-i set world-diffi (td - td-)
+      set td- item (counter - 1) UK-i    set td item counter UK-i    set UK-diffi    (td - td-)
+      set td- item (counter - 1) BR-i    set td item counter BR-i    set BR-diffi    (td - td-)
+      
+      ;; put the dayly scores in lists
+      set USA-dd   lput USA-diff     USA-dd         set USA-di   lput USA-diffi    USA-di 
+      set PRC-dd   lput PRC-diff     PRC-dd         set PRC-di   lput PRC-diffi    PRC-di
+      set NL-dd    lput NL-diff      NL-dd          set NL-di    lput NL-diffi     NL-di   
+      set F-dd     lput F-diff       F-dd           set F-di     lput F-diffi      F-di
+      set world-dd lput world-diff   world-dd       set world-di lput world-diffi  world-di  
+      set UK-dd    lput UK-diff      UK-dd          set UK-di    lput UK-diffi     UK-di
+      set BR-dd    lput BR-diff      BR-dd          set BR-di    lput BR-diffi     BR-di
+   ][]
+   set counter counter + 1 
+  ]
+  
+  if jurisdiction = "USA" 
+       [ set c-i USA-i    set c-d USA-d   set d-i USA-di   set d-d USA-dd ]
+  if jurisdiction = "PRC" 
+       [ set c-i PRC-i    set c-d PRC-d   set d-i PRC-di   set d-d PRC-dd ]
+  if jurisdiction = "Netherlands" 
+       [ set c-i NL-i     set c-d NL-d    set d-i NL-di    set d-d NL-dd ]
+  if jurisdiction = "France" 
+       [ set c-i F-i      set c-d F-d     set d-i F-di     set d-d F-dd]
+  if jurisdiction = "Global" 
+       [ set c-i world-i  set c-d world-d set d-i world-di set d-d world-dd ]
+  if jurisdiction = "UK" 
+       [ set c-i UK-i     set c-d UK-d    set d-i UK-di    set d-d UK-dd ]
+  if jurisdiction = "Brazil" 
+       [ set c-i BR-i     set c-d BR-d    set d-i BR-di    set d-d BR-dd ]
+  
+  
+;2345678901234567890123456789012345678901234567890123456789012345678901234567890
+end
