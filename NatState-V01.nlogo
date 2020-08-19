@@ -1,4 +1,4 @@
-__includes ["urban-rural.nls" "objects.nls" "comments.nls"]
+;__includes [ ]
 extensions [matrix]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -178,6 +178,27 @@ to make-communities end
 to make-institutions end
 to make-enterprises end
 to make-disciplines end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; o b j e c t s ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to-report limit-magnitude [number limit] if number > limit [ report limit ]
+  if number < (- limit) [ report (- limit) ]report number end
+
+to layout-urbans
+  repeat 3 [ let factor sqrt count inds
+    layout-spring inds links (8 / factor) (8 / factor) (1 / factor)]
+  display
+  let x-offset max [xcor] of inds + min [xcor] of inds
+  let y-offset max [ycor] of inds + min [ycor] of inds
+  set x-offset limit-magnitude x-offset 0.1
+  set y-offset limit-magnitude y-offset 0.1
+  ask inds [ setxy (xcor - x-offset / 2) (ycor - y-offset / 2) ]
+end
+
+to find-new-spot
+  right random-float 360 forward random-float 10
+  if any? other turtles-here [ find-new-spot ] move-to patch-here
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 10
@@ -215,7 +236,7 @@ SLIDER
 #rurals
 0
 1024
-508.0
+375.0
 64
 1
 NIL
@@ -499,7 +520,7 @@ SLIDER
 #urbans
 0
 1024
-517.0
+266.0
 64
 1
 NIL
@@ -618,6 +639,17 @@ false
 "" ""
 PENS
 "rurals" 1.0 1 -15575016 true "" "  let rurals []\n  ask inds with [rural?] [ set rurals lput count (link-neighbors) rurals ]\n  set-plot-x-range 1 (max rurals + 1)  ;; + 1 to make room for the width of the last bar\n  histogram rurals\n"
+
+MONITOR
+1114
+107
+1171
+152
+#links
+count links
+0
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
